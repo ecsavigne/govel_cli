@@ -13,17 +13,19 @@ import (
 )
 
 var (
-	repo       = "ecs_govel"
-	token      = ""
-	nameBranch = "main"
-	nameRemote = "origin"
-	repoSource = ""
-	userGit    = ""
+	repo             = "ecs_govel"
+	token            = ""
+	nameBranch       = "main"
+	nameRemote       = "origin"
+	repoSource       = ""
+	userGit          = ""
+	versionGovel_cli = "v1.1.4"
+	versionEcs_govel = "v1.0.0"
 )
 
 func printVersion() {
 	if versionFlag {
-		fmt.Println("version of govel_cli = \033[34mv1.1.1\033[0m and ecs_govel = \033[34mv1.0.0\033[0m")
+		fmt.Printf("version of govel_cli = \033[34m%s\033[0m and ecs_govel = \033[34m%s\033[0m\n", versionGovel_cli, versionEcs_govel)
 		return
 	}
 }
