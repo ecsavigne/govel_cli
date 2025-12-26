@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/spf13/cobra"
+	"os"
 )
 
-var installCmd = &cobra.Command{}
+var projectName string = "ecs_govel"
 
 func main() {
-	fmt.Println("Ejecucion comnandoi")
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
