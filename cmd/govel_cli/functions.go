@@ -21,12 +21,22 @@ var (
 	userGit    = ""
 )
 
+func printVersion() {
+	if versionFlag {
+		fmt.Println("version of govel_cli = \033[34mv1.1.1\033[0m and ecs_govel = \033[34mv1.0.0\033[0m")
+		return
+	}
+}
+
 func fValidateArgsOfRoot(cmd *cobra.Command, args []string) error {
 	if len(args) == 1 && (args[0] == "execute" || slices.Contains(aliases, args[0])) {
 		fmt.Println("entro govel argument 1")
 		return nil
 	} else if len(args) == 0 && (executeFlag == "execute" || slices.Contains(aliases, executeFlag)) {
 		fmt.Println("entro govel flag execute argument 0")
+		return nil
+	} else if versionFlag {
+		printVersion()
 		return nil
 	}
 
@@ -67,6 +77,10 @@ func fRunOfRoot(cmd *cobra.Command, args []string) {
 		e         error
 	)
 
+	if versionFlag {
+		return
+	}
+
 	cantArg := len(args)
 	if cantArg == 1 {
 		subComand, _, e = cmd.Find([]string{args[0]})
@@ -80,6 +94,7 @@ func fRunOfRoot(cmd *cobra.Command, args []string) {
 	}
 
 	if analizeFlags() != "execute" || !slices.Contains(aliases, analizeFlags()) {
+
 	} else {
 		nameSubComand = executeFlag
 		if len(args) > 0 {
