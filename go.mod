@@ -1,4 +1,4 @@
-module govel_cli
+module github.com/ecsavigne/govel_cli
 
 go 1.25.5
 
