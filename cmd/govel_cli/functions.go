@@ -19,7 +19,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.5"
+	versionGovel_cli = "v1.1.6"
 	versionEcs_govel = "v2.0.0"
 )
 
@@ -114,19 +114,25 @@ func fRunOfRoot(cmd *cobra.Command, args []string) {
 
 func deleteFiles(nameFolder string) {
 	fmt.Println("deleting files")
-	erros := os.RemoveAll(path.Join(".", nameFolder, ".github"))
+	path_name := path.Join(".", nameFolder, ".git")
+	fmt.Printf("folder: %s\n", path_name)
+	erros := os.RemoveAll(path_name)
 	if erros != nil {
-		fmt.Println("Error deleting file .git: ", erros.Error())
+		fmt.Printf("Error deleting folder: %s, error: %s\n", path_name, erros.Error())
 	}
 
-	erros = os.RemoveAll(path.Join(".", nameFolder, "tmp"))
+	path_name = path.Join(".", nameFolder, "tmp")
+	fmt.Printf("folder: %s\n", path_name)
+	erros = os.RemoveAll(path_name)
 	if erros != nil {
-		fmt.Println("Error deleting folder tmp: ", erros.Error())
+		fmt.Printf("Error deleting folder: %s, error: %s\n", path_name, erros.Error())
 	}
 
-	err := os.Remove((path.Join(".", nameFolder, ".gitignore")))
+	path_name = (path.Join(".", nameFolder, ".gitignore"))
+	fmt.Printf("folder: %s\n", path_name)
+	err := os.Remove(path_name)
 	if err != nil {
-		fmt.Println("Error deleting .gitignore: ", err.Error())
+		fmt.Printf("Error deleting file: %s, error: %s\n", path_name, erros.Error())
 	}
 }
 
