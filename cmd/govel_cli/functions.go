@@ -19,7 +19,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.6"
+	versionGovel_cli = "v1.1.7"
 	versionEcs_govel = "v2.0.0"
 )
 
@@ -252,6 +252,7 @@ func setPermission(nameFolder string) {
 		"chmod",
 		"-R",
 		"777",
+		"..",
 		nameFolder,
 	}
 
