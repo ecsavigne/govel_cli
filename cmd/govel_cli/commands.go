@@ -8,7 +8,7 @@ var aliases = []string{"exe", "ex", "e"}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:          "govel_cli [flags] [command]",
+	Use:          "govel_cli [command] [flags]",
 	Short:        "govel_cli is a command line interface for govel",
 	Long:         `govel_cli. Command line interface for govel, create scalfold for a project govel`,
 	SilenceUsage: false,

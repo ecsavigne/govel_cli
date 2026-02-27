@@ -19,7 +19,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.4"
+	versionGovel_cli = "v1.1.5"
 	versionEcs_govel = "v2.0.0"
 )
 
@@ -113,20 +113,20 @@ func fRunOfRoot(cmd *cobra.Command, args []string) {
 }
 
 func deleteFiles(nameFolder string) {
-	fmt.Println("Project already exists")
-	erros := os.RemoveAll(path.Join(".", nameFolder, ".git"))
+	fmt.Println("deleting files")
+	erros := os.RemoveAll(path.Join(".", nameFolder, ".github"))
 	if erros != nil {
-		fmt.Println("Error deletando carpeta .git: ", erros.Error())
+		fmt.Println("Error deleting file .git: ", erros.Error())
 	}
 
 	erros = os.RemoveAll(path.Join(".", nameFolder, "tmp"))
 	if erros != nil {
-		fmt.Println("Error deletando carpeta .git: ", erros.Error())
+		fmt.Println("Error deleting folder tmp: ", erros.Error())
 	}
 
 	err := os.Remove((path.Join(".", nameFolder, ".gitignore")))
 	if err != nil {
-		fmt.Println("Error deletando .gitignore: ", err.Error())
+		fmt.Println("Error deleting .gitignore: ", err.Error())
 	}
 }
 
@@ -231,6 +231,27 @@ func addRemote() {
 	execCommand(gitAddRemote)
 }
 
+func renameFolder(nameFolder string) {
+	renameFolder := []string{
+		"mv",
+		"ecs_govel",
+		nameFolder,
+	}
+
+	execCommand(renameFolder)
+}
+
+func setPermission(nameFolder string) {
+	setPermission := []string{
+		"chmod",
+		"-R",
+		"777",
+		nameFolder,
+	}
+
+	execCommand(setPermission)
+}
+
 func createProject(nameFolder string) {
 	gitClone := []string{
 		"git",
@@ -245,8 +266,9 @@ func createProject(nameFolder string) {
 			fmt.Println(err)
 		}
 
+		renameFolder(nameFolder)
 		deleteFiles(nameFolder)
-	} else {
+		// creatin repository
 		inputRepo()
 		inputUser()
 		inputBranch()
@@ -260,6 +282,9 @@ func createProject(nameFolder string) {
 		firstCommit()
 		addRemote()
 		pushInit()
+
+		setPermission(nameFolder)
+	} else {
 	}
 
 }
