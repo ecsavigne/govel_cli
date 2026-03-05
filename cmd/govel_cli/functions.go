@@ -19,8 +19,8 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.7"
-	versionEcs_govel = "v2.0.0"
+	versionGovel_cli = "v1.1.8"
+	versionEcs_govel = "v2.7.2"
 )
 
 func printVersion() {
@@ -248,6 +248,7 @@ func renameFolder(nameFolder string) {
 }
 
 func setPermission(nameFolder string) {
+	fmt.Println("set permission for ", nameFolder)
 	setPermission := []string{
 		"chmod",
 		"-R",
