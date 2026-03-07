@@ -289,7 +289,7 @@ coverage.*
 profile.cov
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
 
 # Go workspace file
 go.work
@@ -301,6 +301,12 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+./test.json
+./logs
+./tmp/
+./.vscode
+.air.toml
+./temp
 `
 
 	f.WriteString(content)
