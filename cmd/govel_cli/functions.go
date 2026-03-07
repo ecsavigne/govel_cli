@@ -20,7 +20,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.11"
+	versionGovel_cli = "v1.1.12"
 	versionEcs_govel = "v2.7.4"
 )
 
@@ -203,6 +203,23 @@ func firstCommit() {
 	execCommand(gitCommit)
 }
 
+func gitIgnoreCommit() {
+	gitAdd := []string{
+		"git",
+		"add",
+		".",
+	}
+	execCommand(gitAdd)
+
+	gitCommit := []string{
+		"git",
+		"commit",
+		"-m",
+		"add .gitignore",
+	}
+	execCommand(gitCommit)
+}
+
 func pushInit() {
 	gitPush := []string{
 		"git",
@@ -262,9 +279,9 @@ func setPermission(nameFolder string) {
 }
 
 func createGitIgnore() {
-	f, e := os.Open(".gitignore")
+	f, e := os.Create(".gitignore")
 	if e != nil {
-		fmt.Printf("error creating .gitignore: %s", e.Error())
+		fmt.Printf("error creating .gitignore: %s\n", e.Error())
 	}
 	defer f.Close()
 
@@ -342,8 +359,10 @@ func createProject(nameFolder string) {
 		firstCommit()
 		addRemote()
 		pushInit()
-		setPermission(nameFolder)
 		createGitIgnore()
+		setPermission(nameFolder)
+		gitIgnoreCommit()
+		pushInit()
 	} else {
 	}
 
