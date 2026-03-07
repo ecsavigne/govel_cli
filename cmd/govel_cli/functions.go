@@ -20,7 +20,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.9"
+	versionGovel_cli = "v1.1.10"
 	versionEcs_govel = "v2.7.2"
 )
 
@@ -261,6 +261,51 @@ func setPermission(nameFolder string) {
 	execCommand(setPermission)
 }
 
+func createGitIgnore() {
+	f, e := os.Open(".gitignore")
+	if e != nil {
+		fmt.Printf("error creating .gitignore: %s", e.Error())
+	}
+	defer f.Close()
+
+	content := `
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with "go test -c"
+*.test
+
+# Code coverage profiles and other test artifacts
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+.env
+
+# Editor/IDE
+# .idea/
+# .vscode/
+`
+
+	f.WriteString(content)
+}
+
 func createProject(nameFolder string) {
 	gitClone := []string{
 		"git",
@@ -291,7 +336,7 @@ func createProject(nameFolder string) {
 		firstCommit()
 		addRemote()
 		pushInit()
-
+		createGitIgnore()
 		setPermission(nameFolder)
 	} else {
 	}
