@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"slices"
 
 	"github.com/spf13/cobra"
@@ -19,7 +20,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.8"
+	versionGovel_cli = "v1.1.9"
 	versionEcs_govel = "v2.7.2"
 )
 
@@ -249,12 +250,12 @@ func renameFolder(nameFolder string) {
 
 func setPermission(nameFolder string) {
 	fmt.Println("set permission for ", nameFolder)
+	_path := filepath.Join("..", nameFolder)
 	setPermission := []string{
 		"chmod",
 		"-R",
 		"777",
-		"..",
-		nameFolder,
+		_path,
 	}
 
 	execCommand(setPermission)
