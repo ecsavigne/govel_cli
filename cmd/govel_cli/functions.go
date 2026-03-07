@@ -20,7 +20,7 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.10"
+	versionGovel_cli = "v1.1.11"
 	versionEcs_govel = "v2.7.4"
 )
 
@@ -342,8 +342,8 @@ func createProject(nameFolder string) {
 		firstCommit()
 		addRemote()
 		pushInit()
-		createGitIgnore()
 		setPermission(nameFolder)
+		createGitIgnore()
 	} else {
 	}
 
