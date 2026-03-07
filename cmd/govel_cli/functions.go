@@ -21,7 +21,7 @@ var (
 	repoSource       = ""
 	userGit          = ""
 	versionGovel_cli = "v1.1.10"
-	versionEcs_govel = "v2.7.2"
+	versionEcs_govel = "v2.7.4"
 )
 
 func printVersion() {
