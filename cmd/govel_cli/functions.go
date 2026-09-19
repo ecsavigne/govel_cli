@@ -20,8 +20,8 @@ var (
 	nameRemote       = "origin"
 	repoSource       = ""
 	userGit          = ""
-	versionGovel_cli = "v1.1.12"
-	versionEcs_govel = "v2.7.4"
+	versionGovel_cli = "v1.1.13"
+	versionEcs_govel = "v2.11.4"
 )
 
 func printVersion() {
